@@ -4,14 +4,14 @@ import Tasklisnnumber from '../other/Tasklisnnumber';
 import Tasklist from '../Tasklist/Tasklist';
 
 
-const EmployeeDashboared = ({data}) => {
+const EmployeeDashboared = (props) => {
   
   return (
      <>
       <div className='p-10 bg-[#1c1c1c] h-screen'>
-        <Header data={data} ></Header>
-        <Tasklisnnumber data={data}/>
-        <Tasklist data={data}/>
+        <Header changeuser={props.changeuser} data={props.data}></Header>
+        <Tasklisnnumber  data={props.data}/>
+        <Tasklist data={props.data}/>
       </div>
      </>
   )

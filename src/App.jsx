@@ -5,25 +5,33 @@ import { getLocalStorage, setLocalStorage } from "./utils/LocalStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
+
+
   const [user, setUser] = useState(null);
   const [loggedInUserdata, setLoggedInUserdata] = useState(null);
-  const authData = useContext(AuthContext);
+
+
+const {userdata,setUserdata} = useContext(AuthContext)
 
   useEffect(() => {
-    const loggedInuser =  localStorage.getItem("loggedInuser");
-     if(loggedInuser){
-      const userData = JSON.parse(loggedInuser) 
-      // setUser(userData.role)
-      // setLoggedInUserdata
-     }
-  },[])
+  const loggedInuser = localStorage.getItem("loggedInuser");
+  if (loggedInuser) {
+    const userData = JSON.parse(loggedInuser);
+    setUser(userData.role);
+    // Add this line to restore the data property!
+    setLoggedInUserdata(userData.data); 
+  }
+}, []);
 
+   setLocalStorage();
+
+   
   const HandelLogin = (email, password) => {
    if (email == "admin@me.com" && password == "123") {
       setUser("admin");
       localStorage.setItem("loggedInuser", JSON.stringify({ role: "admin" }));
-     } else if (authData) {
-      const employee = authData.employees.find(
+     }else if (userdata.employees) {
+      const employee = userdata.employees.find(
         (e) => e.email == email && e.password == password
       );
       if (employee) {
@@ -39,15 +47,13 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    setLocalStorage();
-  }, []);
 
   return (
-    <>
+      <>
       {!user ? <Login handellogin={HandelLogin} /> : ""}
-      {user == 'admin' ? <AdminDashboard /> : (user == 'employee' &&<EmployeeDashboared data={loggedInUserdata}/>)}
-    </>
+      {user == 'admin' ? <AdminDashboard changeuser ={setUser}/> : (user == 'employee' && <EmployeeDashboared changeuser ={setUser} data={loggedInUserdata}/>)}
+  </>
+     
   );
 };
 

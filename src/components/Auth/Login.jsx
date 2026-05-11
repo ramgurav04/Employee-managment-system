@@ -9,6 +9,7 @@ const Login = ({ handellogin }) => {
 
   const SubmiteHandler = (e) => {
     e.preventDefault();
+
     handellogin(email, password);
 
     // console.log("password :", password);
@@ -16,6 +17,7 @@ const Login = ({ handellogin }) => {
     setEmail("");
     setPassword("");
   };
+
 
   const data = getLocalStorage();
   // console.log(data.employees)
