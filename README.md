@@ -1,3 +1,40 @@
+## 🎯 Installation & Setup
+
+Live Browser Link = employee-managment-system-virid.vercel.app
+admin = email: admin@me.com 
+        pass: 123
+employee = email: aarav@example.com 
+           pass = 123
+
+
+
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
+
+### Local Development
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/employeemanagmentsys.git
+
+# 2. Navigate to project
+cd employeemanagmentsys
+
+# 3. Install dependencies
+npm install
+
+# 4. Start development server
+npm run dev
+
+# 5. Open browser
+# Visit http://localhost:5173/ in your browser
+=======
+# Employee-managment-system
+The Basic Employ Managment System react Project
+>>>>>>> 72b513398f260659ef1a76a316414724d9ca4aa8
+
+           
 <<<<<<< HEAD
 # 🏢 Employee Management System
 
@@ -93,30 +130,3 @@ employeemanagmentsys/
 └── README.md
 
 
-## 🎯 Installation & Setup
-
-### Prerequisites
-- **Node.js** (v18 or higher)
-- **npm** (v9 or higher)
-
-### Local Development
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/employeemanagmentsys.git
-
-# 2. Navigate to project
-cd employeemanagmentsys
-
-# 3. Install dependencies
-npm install
-
-# 4. Start development server
-npm run dev
-
-# 5. Open browser
-# Visit http://localhost:5173/ in your browser
-=======
-# Employee-managment-system
-The Basic Employ Managment System react Project
->>>>>>> 72b513398f260659ef1a76a316414724d9ca4aa8
