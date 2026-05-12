@@ -3,7 +3,8 @@ import { AuthContext } from "../../context/AuthProvider";
 
 const AllTask = () => {
   const { userdata, setUserdata } = useContext(AuthContext);
-  const data = userdata.employees;
+ 
+ const data = setUserdata.employees;
 
   if (!userdata || !userdata.employees) {
     return (
@@ -27,7 +28,8 @@ const AllTask = () => {
 
         {/* List Container */}
         <div className="h-[500px] overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {data.map((elem, idx) => (
+          {
+          setUserdata.employees.map((elem, idx) => (
             <div
               key={idx}
               className="border-2 border-emerald-500/40 px-8 py-6 rounded-xl flex justify-between items-center shadow-lg hover:scale-[1.01] transition-all duration-200 mb-4"

@@ -16,38 +16,73 @@ const {userdata,setUserdata} = useContext(AuthContext)
   const submithandler = (e) => {
     e.preventDefault();
 
-    setNewtask({
-      taskTittle,
-      taskdescriptin,
-      taskDate,
-      catagory,
-      active: false,
-      newtask: true,
-      failed: false,
-      completed: false,
-    });
+//     setNewtask ( {
+//       taskTittle,
+//       taskdescriptin,
+//       taskDate,
+//       catagory,
+//       active: false,
+//       newTask: true,  
+//       failed: false,
+//       completed: false,
+//     });
 
-    const data = userdata.employees 
-    
-    console.log(userdata.employees);
+//     const data = [...userdata.employees];
+//     console.log(userdata.employees);
    
+//     data.forEach((elem) => {
+//       if (Assignto == elem.firstName) {
+//          elem.tasks.push(newtask)
+//         elem.taskCounts.newTask = (elem.taskCounts.newTask) + 1;
+//       }
+//     });
     
+// setUserdata({ ...userdata, employees: data });
+// localStorage.setItem('employees', JSON.stringify(data));
+// console.log(data);
+    
+   
+//     settaskTittle('')
+//     setAssignto('')
+//     setcatagory('')
+//     settaskDate('')
+//     settaskdescriptin('')
+//   };
 
-    data.forEach((elem) => {
-      if (Assignto == elem.firstName) {
-         elem.tasks.push(newtask)
-        elem.taskCounts.newTask = (elem.taskCounts.newTask || 0) + 1;
-      }
-    });
-     console.log(data);
-    
-   
-    settaskTittle('')
-    setAssignto('')
-    setcatagory('')
-    settaskDate('')
-    settaskdescriptin('')
+const taskObj = {
+    taskTittle,
+    taskdescriptin,
+    taskDate,
+    catagory,
+    active: false,
+    newTask: true, // Standardize to camelCase
+    failed: false,
+    completed: false,
   };
+
+  // Clone employees to avoid direct mutation
+  const data = [...userdata.employees];
+
+data.forEach((elem) => {
+    if (Assignto === elem.firstName) {
+      elem.tasks.push(taskObj); // Use the local object, not the state 'newtask'
+      elem.taskCounts.newTask = (elem.taskCounts.newTask || 0) + 1;
+    }
+  });
+
+  // Update Global State
+  setUserdata({ ...userdata, employees: data });
+  
+  // Persist to Local Storage
+  localStorage.setItem('employees', JSON.stringify(data));
+
+  // Clear inputs
+  settaskTittle('');
+  setAssignto('');
+  setcatagory('');
+  settaskDate('');
+  settaskdescriptin('');
+};
 
   return (
     <>

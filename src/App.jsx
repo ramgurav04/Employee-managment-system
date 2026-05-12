@@ -5,7 +5,9 @@ import { getLocalStorage, setLocalStorage } from "./utils/LocalStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
-
+   useEffect(() => {
+    setLocalStorage();
+  }, []);
 
   const [user, setUser] = useState(null);
   const [loggedInUserdata, setLoggedInUserdata] = useState(null);
@@ -13,17 +15,24 @@ const App = () => {
 
 const {userdata,setUserdata} = useContext(AuthContext)
 
-  useEffect(() => {
-  const loggedInuser = localStorage.getItem("loggedInuser");
-  if (loggedInuser) {
-    const userData = JSON.parse(loggedInuser);
-    setUser(userData.role);
-    // Add this line to restore the data property!
-    setLoggedInUserdata(userData.data); 
-  }
-}, []);
+//   useEffect(() => {
+//   const loggedInuser = localStorage.getItem("loggedInuser");
+//   if (loggedInuser) {
+//     const userData = JSON.parse(loggedInuser);
+//     setUser(userData.role);
+//     // Add this line to restore the data property!
+//     setLoggedInUserdata(userData.data); 
+//   }
+// }, []);
 
-   setLocalStorage();
+useEffect(() => {
+    const loggedInUser = localStorage.getItem("loggedInuser");
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData.role);
+      setLoggedInUserdata(userData.data); // Restores the specific employee object
+    }
+  }, []);
 
    
   const HandelLogin = (email, password) => {
