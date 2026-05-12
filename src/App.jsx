@@ -5,13 +5,9 @@ import { getLocalStorage, setLocalStorage } from "./utils/LocalStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
-   useEffect(() => {
-    setLocalStorage();
-  }, []);
-
   const [user, setUser] = useState(null);
   const [loggedInUserdata, setLoggedInUserdata] = useState(null);
-
+const [loading,setLoading] = useState(true)
 
 const {userdata,setUserdata} = useContext(AuthContext)
 
@@ -25,21 +21,30 @@ const {userdata,setUserdata} = useContext(AuthContext)
 //   }
 // }, []);
 
+
 useEffect(() => {
+    setLocalStorage();
     const loggedInUser = localStorage.getItem("loggedInuser");
     if (loggedInUser) {
       const userData = JSON.parse(loggedInUser);
       setUser(userData.role);
-      setLoggedInUserdata(userData.data); // Restores the specific employee object
+      setLoggedInUserdata(userData.data || null);
     }
-  }, []);
+    setLoading(false); // Set loading complete
+  }, []);   
 
-   
   const HandelLogin = (email, password) => {
-   if (email == "admin@me.com" && password == "123") {
+  if (email === "admin@me.com" && password === "123") {
+      const adminData = { name: "Admin", email: "admin@me.com" };
       setUser("admin");
-      localStorage.setItem("loggedInuser", JSON.stringify({ role: "admin" }));
-     }else if (userdata.employees) {
+      setLoggedInUserdata(adminData);
+      localStorage.setItem("loggedInuser", JSON.stringify({ 
+        role: "admin",
+        data: adminData
+      }));
+      return;
+     }
+     if (userdata.employees) {
       const employee = userdata.employees.find(
         (e) => e.email == email && e.password == password
       );
@@ -50,17 +55,31 @@ useEffect(() => {
           "loggedInuser",
           JSON.stringify({ role: "employee",data:employee}),
         );
+        return;
       }
-    } else {
-      alert("Invalid  Credentials");
-    }
+    }  
+    alert("Invalid  Credentials");
   };
 
+  // Loading screen
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-900">
+        <h1 className="text-white text-2xl">Loading...</h1>
+      </div>
+    );
+  }
 
   return (
       <>
-      {!user ? <Login handellogin={HandelLogin} /> : ""}
-      {user == 'admin' ? <AdminDashboard changeuser ={setUser}/> : (user == 'employee' && <EmployeeDashboared changeuser ={setUser} data={loggedInUserdata}/>)}
+        {!user ? <Login handellogin={HandelLogin} /> : ""}
+      {user === 'admin' ? 
+        <AdminDashboard changeuser={setUser} data={loggedInUserdata} /> : 
+        (user === 'employee' ? 
+          <EmployeeDashboared changeuser={setUser} data={loggedInUserdata} /> : 
+          ""
+        )
+      }
   </>
      
   );

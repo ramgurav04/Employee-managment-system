@@ -2,8 +2,7 @@ import { useState } from "react";
 import { getLocalStorage } from "../../utils/LocalStorage";
 
 const Login = ({ handellogin }) => {
-  // console.log(handellogin);
-
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,16 +10,11 @@ const Login = ({ handellogin }) => {
     e.preventDefault();
 
     handellogin(email, password);
-
-    // console.log("password :", password);
-    // console.log("email :", email);
     setEmail("");
     setPassword("");
   };
 
 
-  const data = getLocalStorage();
-  // console.log(data.employees)
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-900">

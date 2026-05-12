@@ -1,33 +1,38 @@
-import React, { useState } from "react";
-import { setLocalStorage } from "../../utils/LocalStorage";
+import React from 'react'
 
-const Header = ( props) => {
-  // const [username, setUsername] = useState('');
-
-  // if(data){
-  //   setUsername("admin")
-  // }else{
-  //   setUsername(data.firstName)
-  // }
-
-  const Logoutuser = () =>{
-     localStorage.setItem('loggedInuser','')
-     props.changeuser('')
-     
-    //  window.location.reload()
-
-  }
+const Header = ({ changeuser, data, onRefresh }) => {
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInuser");
+    changeuser(null);
+  };
 
   return (
-    <>
-      <div className="flex items-end justify-between">
-        <h1 className='text-2xl font-medium text-white'>
-          Hello <br /> <span className="text-3xl font-semibold text-white"> {props.data?.firstName} 🖐</span>
+    <div className="flex justify-between items-center mb-6">
+      <div>
+        <h1 className="text-xl sm:text-2xl font-bold text-white">
+          {data?.firstName ? `Welcome, ${data.firstName}` : 'Admin Dashboard'}
         </h1>
-        <button className="bg-red-500 py-2 px-5 rounded-sm text-lg font-medium" onClick={  Logoutuser}>Log Out</button>
       </div>
-    </>
-  );
-};
+      <div className="flex gap-3">
+        {/* ✅ Refresh button - only show for employees */}
+        {onRefresh && (
+          <button
+            onClick={onRefresh}
+            className="bg-emerald-500 text-white px-3 py-2 rounded-lg hover:bg-emerald-600 transition-colors flex items-center gap-1 text-sm"
+            title="Refresh tasks"
+          >
+            🔄 Refresh
+          </button>
+        )}
+        <button
+          onClick={handleLogout}
+          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  )
+}
 
-export default Header;
+export default Header
