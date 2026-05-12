@@ -14,7 +14,8 @@ const employees = [
       {
         id: 1,
         taskTitle: "Design Homepage",
-        taskDescription: "Create a modern homepage design with responsive layout",
+        taskDescription:
+          "Create a modern homepage design with responsive layout",
         taskDate: "2024-05-15",
         category: "Design",
         active: true,
@@ -102,8 +103,8 @@ const employees = [
         newTask: false,
         completed: false,
         failed: false,
-      }
-    ]
+      },
+    ],
   },
 
   {
@@ -172,8 +173,8 @@ const employees = [
         newTask: false,
         completed: false,
         failed: false,
-      }
-    ]
+      },
+    ],
   },
 
   {
@@ -220,8 +221,8 @@ const employees = [
         newTask: false,
         completed: false,
         failed: true,
-      }
-    ]
+      },
+    ],
   },
 
   {
@@ -301,11 +302,10 @@ const employees = [
         newTask: false,
         completed: false,
         failed: false,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
- 
 
 const admin = [
   {
@@ -328,14 +328,13 @@ const admin = [
 //   return { employees, admin };
 // };
 
-
 export const setLocalStorage = () => {
   localStorage.setItem("employees", JSON.stringify(employees));
   localStorage.setItem("admin", JSON.stringify(admin));
 };
 
 export const getLocalStorage = () => {
-  const employees = JSON.parse(localStorage.getItem("employees")) || [];  
+  const employees = JSON.parse(localStorage.getItem("employees")) || [];
   const admin = JSON.parse(localStorage.getItem("admin")) || []; // Add fallback
   return { employees, admin };
 };

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Header = ({ changeuser, data, onRefresh }) => {
   const handleLogout = () => {
@@ -10,11 +10,10 @@ const Header = ({ changeuser, data, onRefresh }) => {
     <div className="flex justify-between items-center mb-6">
       <div>
         <h1 className="text-xl sm:text-2xl font-bold text-white">
-          {data?.firstName ? `Welcome, ${data.firstName}` : 'Admin Dashboard'}
+          {data?.firstName ? `Welcome, ${data.firstName}` : "Admin Dashboard"}
         </h1>
       </div>
       <div className="flex gap-3">
-        {/* ✅ Refresh button - only show for employees */}
         {onRefresh && (
           <button
             onClick={onRefresh}
@@ -32,7 +31,7 @@ const Header = ({ changeuser, data, onRefresh }) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

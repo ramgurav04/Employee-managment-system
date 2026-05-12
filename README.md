@@ -1,16 +1,117 @@
-# React + Vite
+# 🏢 Employee Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-19.2.5-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-8.0-purple?logo=vite)
+![Tailwind](https://img.shields.io/badge/Tailwind-4.2-teal?logo=tailwindcss)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-Currently, two official plugins are available:
+A modern **Employee Management System** built with React, Vite, and Tailwind CSS. Features role-based authentication, task assignment, and real-time task tracking.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Dashboard Screenshot](./screenshots/dashboard.png)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🔐 Authentication
+- **Admin Login**: Full control over task creation and employee management
+- **Employee Login**: View assigned tasks with real-time updates
+- **Persistent Sessions**: Stays logged in until manual logout
 
-## Expanding the ESLint configuration
+### 👨‍💼 Admin Dashboard
+- Create and assign tasks to employees
+- View all employees' task status at a glance
+- Track task metrics (New, Active, Completed, Failed)
+- Responsive design for all screen sizes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 👷 Employee Dashboard
+- View assigned tasks in card layout
+- Task status categories: New, Active, Completed, Failed
+- One-click refresh to get latest assignments
+- Task filtering by status
+
+### 📊 Task Management
+- **New Tasks**: Freshly assigned, ready to accept
+- **Active Tasks**: Currently working on
+- **Completed Tasks**: Successfully finished
+- **Failed Tasks**: Need to retry
+
+## 🚀 Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Admin** | `admin@me.com` | `123` |
+| **Employee 1** | `aarav@example.com` | `123` |
+| **Employee 2** | `vivaan@example.com` | `123` |
+| **Employee 3** | `ishaan@example.com` | `123` |
+| **Employee 4** | `ananya@example.com` | `123` |
+| **Employee 5** | `krishna@example.com` | `123` |
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **React 19** | UI Framework |
+| **Vite 8** | Build Tool & Dev Server |
+| **Tailwind CSS 4** | Styling & Responsive Design |
+| **Context API** | State Management |
+| **Local Storage** | Data Persistence |
+
+## 📁 Project Structure
+employeemanagmentsys/
+├── public/
+│ └── favicon.svg
+├── src/
+│ ├── components/
+│ │ ├── Auth/
+│ │ │ └── Login.jsx
+│ │ ├── Dashboard/
+│ │ │ ├── Admindashboard.jsx
+│ │ │ └── EmployeeDashboared.jsx
+│ │ ├── other/
+│ │ │ ├── AllTask.jsx
+│ │ │ ├── CreateTask.jsx
+│ │ │ ├── Header.jsx
+│ │ │ └── Tasklisnnumber.jsx
+│ │ ├── Tasklist/
+│ │ │ ├── Accepttask.jsx
+│ │ │ ├── Completetasklist.jsx
+│ │ │ ├── Faildtask.jsx
+│ │ │ ├── Newtask.jsx
+│ │ │ └── Tasklist.jsx
+│ │ └── Index.js
+│ ├── context/
+│ │ └── AuthProvider.jsx
+│ ├── utils/
+│ │ └── LocalStorage.js
+│ ├── App.jsx
+│ ├── index.css
+│ └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+├── vercel.json
+└── README.md
+
+
+## 🎯 Installation & Setup
+
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
+
+### Local Development
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/employeemanagmentsys.git
+
+# 2. Navigate to project
+cd employeemanagmentsys
+
+# 3. Install dependencies
+npm install
+
+# 4. Start development server
+npm run dev
+
+# 5. Open browser
+# Visit http://localhost:5173/ in your browser

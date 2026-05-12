@@ -4,7 +4,6 @@ import { AuthContext } from "../../context/AuthProvider";
 const AllTask = () => {
   const { userdata } = useContext(AuthContext); // Remove setUserdata if not needed
 
-  // ✅ FIX: Use userdata, not setUserdata
   if (!userdata || !userdata.employees) {
     return (
       <div className="flex justify-center items-center h-full mt-20">
@@ -19,15 +18,21 @@ const AllTask = () => {
         {/* Header Row */}
         <div className="bg-red-500/90 px-4 sm:px-8 py-3 sm:py-5 rounded-xl flex justify-between items-center shadow-lg mb-4 text-white">
           <h2 className="w-1/5 text-sm sm:text-xl font-bold">Employee Name</h2>
-          <h3 className="w-1/5 text-sm sm:text-xl font-bold text-center">New Task</h3>
-          <h5 className="w-1/5 text-sm sm:text-xl font-bold text-center">Active</h5>
-          <h5 className="w-1/5 text-sm sm:text-xl font-bold text-center">Complete</h5>
-          <h5 className="w-1/5 text-sm sm:text-xl font-bold text-center">Failed</h5>
+          <h3 className="w-1/5 text-sm sm:text-xl font-bold text-center">
+            New Task
+          </h3>
+          <h5 className="w-1/5 text-sm sm:text-xl font-bold text-center">
+            Active
+          </h5>
+          <h5 className="w-1/5 text-sm sm:text-xl font-bold text-center">
+            Complete
+          </h5>
+          <h5 className="w-1/5 text-sm sm:text-xl font-bold text-center">
+            Failed
+          </h5>
         </div>
 
-        {/* List Container */}
         <div className="h-[500px] overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {/* ✅ FIX: Use userdata.employees, NOT setUserdata.employees */}
           {userdata.employees.map((elem, idx) => (
             <div
               key={idx}

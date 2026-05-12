@@ -10,7 +10,7 @@ const CreateTask = () => {
   const [taskDate, settaskDate] = useState("");
   const [catagory, setcatagory] = useState("");
 
- const submithandler = (e) => {
+  const submithandler = (e) => {
     e.preventDefault();
 
     if (!taskTitle || !taskdescriptin || !Assignto || !taskDate || !catagory) {
@@ -30,14 +30,13 @@ const CreateTask = () => {
       completed: false,
     };
 
-    // Get latest data from localStorage
-    const employees = JSON.parse(localStorage.getItem('employees')) || userdata.employees;
-    
-    // Clone to avoid mutation
-    const updatedEmployees = employees.map(emp => ({
+    const employees =
+      JSON.parse(localStorage.getItem("employees")) || userdata.employees;
+
+    const updatedEmployees = employees.map((emp) => ({
       ...emp,
       tasks: [...emp.tasks],
-      taskCounts: { ...emp.taskCounts }
+      taskCounts: { ...emp.taskCounts },
     }));
 
     let assigned = false;
@@ -54,20 +53,17 @@ const CreateTask = () => {
       return;
     }
 
-    // ✅ Update localStorage FIRST
-    localStorage.setItem('employees', JSON.stringify(updatedEmployees));
-    
-    // ✅ Update context
+    localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+
     setUserdata({ ...userdata, employees: updatedEmployees });
 
-    // ✅ Clear inputs
-    settaskTitle('');
-    setAssignto('');
-    setcatagory('');
-    settaskDate('');
-    settaskdescriptin('');
-    
-    alert('Task assigned successfully!');
+    settaskTitle("");
+    setAssignto("");
+    setcatagory("");
+    settaskDate("");
+    settaskdescriptin("");
+
+    alert("Task assigned successfully!");
   };
 
   return (
@@ -154,7 +150,7 @@ const CreateTask = () => {
                 ></textarea>
               </div>
 
-              <button 
+              <button
                 type="submit"
                 className="bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 w-full mt-6 shadow-lg hover:shadow-emerald-500/20"
               >

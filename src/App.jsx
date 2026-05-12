@@ -1,28 +1,17 @@
-import React from 'react'
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { Login, EmployeeDashboared, AdminDashboard } from "./components/Index";
-import { getLocalStorage, setLocalStorage } from "./utils/LocalStorage";
+import { setLocalStorage } from "./utils/LocalStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserdata, setLoggedInUserdata] = useState(null);
-const [loading,setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
-const {userdata,setUserdata} = useContext(AuthContext)
+  const { userdata, setUserdata } = useContext(AuthContext);
 
-//   useEffect(() => {
-//   const loggedInuser = localStorage.getItem("loggedInuser");
-//   if (loggedInuser) {
-//     const userData = JSON.parse(loggedInuser);
-//     setUser(userData.role);
-//     // Add this line to restore the data property!
-//     setLoggedInUserdata(userData.data); 
-//   }
-// }, []);
-
-
-useEffect(() => {
+  useEffect(() => {
     setLocalStorage();
     const loggedInUser = localStorage.getItem("loggedInuser");
     if (loggedInUser) {
@@ -30,34 +19,37 @@ useEffect(() => {
       setUser(userData.role);
       setLoggedInUserdata(userData.data || null);
     }
-    setLoading(false); // Set loading complete
-  }, []);   
+    setLoading(false);
+  }, []);
 
   const HandelLogin = (email, password) => {
-  if (email === "admin@me.com" && password === "123") {
+    if (email === "admin@me.com" && password === "123") {
       const adminData = { name: "Admin", email: "admin@me.com" };
       setUser("admin");
       setLoggedInUserdata(adminData);
-      localStorage.setItem("loggedInuser", JSON.stringify({ 
-        role: "admin",
-        data: adminData
-      }));
+      localStorage.setItem(
+        "loggedInuser",
+        JSON.stringify({
+          role: "admin",
+          data: adminData,
+        }),
+      );
       return;
-     }
-     if (userdata.employees) {
+    }
+    if (userdata.employees) {
       const employee = userdata.employees.find(
-        (e) => e.email == email && e.password == password
+        (e) => e.email == email && e.password == password,
       );
       if (employee) {
         setUser("employee");
         setLoggedInUserdata(employee);
         localStorage.setItem(
           "loggedInuser",
-          JSON.stringify({ role: "employee",data:employee}),
+          JSON.stringify({ role: "employee", data: employee }),
         );
         return;
       }
-    }  
+    }
     alert("Invalid  Credentials");
   };
 
@@ -71,21 +63,17 @@ useEffect(() => {
   }
 
   return (
-      <>
-        {!user ? <Login handellogin={HandelLogin} /> : ""}
-      {user === 'admin' ? 
-        <AdminDashboard changeuser={setUser} data={loggedInUserdata} /> : 
-        (user === 'employee' ? 
-          <EmployeeDashboared changeuser={setUser} data={loggedInUserdata} /> : 
-          ""
-        )
-      }
-  </>
-     
+    <>
+      {!user ? <Login handellogin={HandelLogin} /> : ""}
+      {user === "admin" ? (
+        <AdminDashboard changeuser={setUser} data={loggedInUserdata} />
+      ) : user === "employee" ? (
+        <EmployeeDashboared changeuser={setUser} data={loggedInUserdata} />
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
 export default App;
- 
-
- 
