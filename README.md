@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🏢 Employee Management System
 
 ![React](https://img.shields.io/badge/React-19.2.5-blue?logo=react)
@@ -115,3 +116,7 @@ npm run dev
 
 # 5. Open browser
 # Visit http://localhost:5173/ in your browser
+=======
+# Employee-managment-system
+The Basic Employ Managment System react Project
+>>>>>>> 72b513398f260659ef1a76a316414724d9ca4aa8
